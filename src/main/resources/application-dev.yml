@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+
+#自定义属性
+define:
+  appname: bootproject
+  list:
+        - name: jeff
+          age: 12
+        - name: rose
+          age: 14
+app:
+  system:
+
+

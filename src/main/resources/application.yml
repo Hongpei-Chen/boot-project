@@ -1,3 +1,13 @@
 spring:
+  profiles:
+    active: dev
   main:
     banner-mode: "off"
+
+
+#自定义属性
+define:
+  appname: bootproject
+  list:
+        - name: ximen
+          age: 15
