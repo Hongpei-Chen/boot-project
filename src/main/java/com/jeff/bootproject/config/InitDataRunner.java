@@ -19,6 +19,6 @@ public class InitDataRunner implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("==============<陈鸿培>==================");
+        log.info("参数初始化");
     }
 }
