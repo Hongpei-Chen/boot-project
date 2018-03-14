@@ -1,20 +1,29 @@
-
-
-
-
-
-
-
-
-#自定义属性
-define:
-  appname: bootproject
-  list:
-        - name: jeff
-          age: 12
-        - name: rose
-          age: 14
-app:
-  system:
+#数据源配置
+spring:
+  redis:
+      database: 0
+      host: #
+      password: #
+      port: 6379
+      pool:
+        max-active: 50
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+      timeout: 0
+  datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://#:3306/boot?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&userSSL=false
+        username: root
+        password: #
+        testOnBorrow: true
+        validationQuery: SELECT 1
+        hikari:
+          idle-timeout: 10000
+          maximum-pool-size: 100
+          minimum-idle: 0
+          connection-test-query: SELECT 1
+  jpa:
+    show-sql: true
 
 

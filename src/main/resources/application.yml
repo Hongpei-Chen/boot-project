@@ -1,3 +1,4 @@
+#spring 基本配置
 spring:
   profiles:
     active: dev
@@ -5,9 +6,8 @@ spring:
     banner-mode: "off"
 
 
-#自定义属性
-define:
-  appname: bootproject
-  list:
-        - name: ximen
-          age: 15
+
+#beetl
+beetl:
+  templatesPath: templates
+
