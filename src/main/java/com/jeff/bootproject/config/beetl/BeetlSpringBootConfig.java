@@ -3,6 +3,7 @@ package com.jeff.bootproject.config.beetl;
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import java.util.Properties;
  * <p>Date 2018/3/14 16:40</p>
  */
 @Configuration
-public class BeetlConfig {
+public class BeetlSpringBootConfig {
 
     /**
      * 模板跟目录 ，比如 "templates"
@@ -22,13 +23,13 @@ public class BeetlConfig {
     @Value("${beetl.templatesPath}")
     String templatesPath;
 
-    @Bean
+    @Bean(initMethod = "init", name = "beetlConfig")
     public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
         BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
         //获取Spring Boot 的ClassLoader
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         if(loader==null){
-            loader = BeetlConfig.class.getClassLoader();
+            loader = BeetlSpringBootConfig.class.getClassLoader();
         }
         //额外的配置，可以覆盖默认配置，一般不需要
         beetlGroupUtilConfiguration.setConfigProperties(beetlProperties());
@@ -41,8 +42,8 @@ public class BeetlConfig {
 
     }
 
-    @Bean
-    public BeetlSpringViewResolver getBeetlSpringViewResolver(BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
+    @Bean(name = "beetlViewResolver")
+    public BeetlSpringViewResolver getBeetlSpringViewResolver(@Qualifier("beetlConfig") BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
         BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
         beetlSpringViewResolver.setOrder(0);
