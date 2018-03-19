@@ -10,4 +10,6 @@ spring:
 #beetl
 beetl:
   templatesPath: templates
+beetlsql:
+  enabled : false
 
